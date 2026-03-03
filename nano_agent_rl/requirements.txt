@@ -1,0 +1,27 @@
+# Post-Training dependencies for Qwen2.5-1.5B on RTX 3090 (CUDA 12.x)
+# Install order matters: torch first, then the rest
+
+# PyTorch - use CUDA 12.1 wheel (compatible with CUDA 12.x)
+torch==2.4.0
+torchvision==0.19.0
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# Core HuggingFace stack
+transformers==4.46.0
+datasets==3.0.0
+accelerate==1.0.0
+tokenizers>=0.20.0
+
+# Fine-tuning
+trl==0.12.0
+peft==0.13.0
+
+# Quantization (optional, 1.5B fits in bf16 without it)
+bitsandbytes==0.44.0
+
+# Logging & monitoring
+wandb>=0.18.0
+
+# Utilities
+einops
+scipy
