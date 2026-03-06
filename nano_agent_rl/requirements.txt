@@ -1,27 +1,39 @@
-# Post-Training dependencies for Qwen2.5-1.5B on RTX 3090 (CUDA 12.x)
-# Install order matters: torch first, then the rest
+# Qwen2.5-1.5B Post-Training (SFT + GRPO) Dependencies
+# Verified working environment: CUDA 12.1, Python 3.10
+#
+# IMPORTANT: trl 0.15.0 has 3 API incompatibilities with transformers 5.3.x
+# that require manual patches after installation. See README.md § Patching.
+#
+# Install:
+#   pip install -r requirements.txt
 
-# PyTorch - use CUDA 12.1 wheel (compatible with CUDA 12.x)
-torch==2.4.0
-torchvision==0.19.0
+# ── PyTorch (CUDA 12.1) ───────────────────────────────────────
 --extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.4.0+cu121
+torchvision==0.19.0+cu121
 
-# Core HuggingFace stack
-transformers==4.46.0
+# ── HuggingFace core stack ────────────────────────────────────
+# trl 0.15.0 + transformers 5.3.0 requires 3 patches (see README)
+transformers==5.3.0
 datasets==3.0.0
-accelerate==1.0.0
-tokenizers>=0.20.0
+tokenizers==0.22.2
+huggingface_hub==1.5.0
+safetensors==0.5.3
+accelerate==1.6.0
 
-# Fine-tuning
-trl==0.12.0
+# ── Fine-tuning ───────────────────────────────────────────────
+trl==0.15.0
 peft==0.13.0
 
-# Quantization (optional, 1.5B fits in bf16 without it)
+# ── Quantization (optional, 1.5B fits in bf16 without it) ────
 bitsandbytes==0.44.0
 
-# Logging & monitoring
-wandb>=0.18.0
+# ── Tokenization utilities ────────────────────────────────────
+sentencepiece==0.2.1
 
-# Utilities
-einops
+# ── Logging & monitoring ──────────────────────────────────────
+wandb==0.25.0
+
+# ── Numerical utilities ───────────────────────────────────────
+numpy==2.2.6
 scipy

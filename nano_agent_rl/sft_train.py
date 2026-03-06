@@ -197,6 +197,7 @@ def main():
         bias="none",
     )
     model = get_peft_model(model, lora_config)
+    model.enable_input_require_grads()
     model.print_trainable_parameters()
     # 预期: trainable params ~40M / all ~1.5B (~2.7%)
 

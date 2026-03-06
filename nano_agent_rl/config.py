@@ -66,18 +66,18 @@ GRPO_CONFIG = dict(
     dataset_name          = "openai/gsm8k",
     dataset_config        = "main",
     dataset_split         = "train",
-    max_train_samples     = 5000,   # GSM8K train 共 7473 条，取 5000
+    max_train_samples     = 2400,   # 2400/4=600步，对1.5B模型足够收敛
 
     # GRPO 核心
     num_generations       = 4,      # 每 prompt 并行生成 4 个回答做组内比较
-    max_completion_length = 512,
+    max_completion_length = 256,    # GSM8K reasoning+answer 通常 120-200 token 足够
     temperature           = 0.8,    # 适当探索
     beta                  = 0.1,    # KL penalty 系数
 
     # 训练
     num_train_epochs      = 1,
-    per_device_train_batch_size = 1,
-    gradient_accumulation_steps = 16,  # 有效 batch = 16
+    per_device_train_batch_size = 4,    # 必须 >= num_generations=4 且可整除
+    gradient_accumulation_steps = 4,   # 有效 batch = 4×4 = 16，保持不变
     learning_rate         = 5e-6,   # RL 阶段学习率要小
     lr_scheduler_type     = "cosine",
     warmup_ratio          = 0.05,

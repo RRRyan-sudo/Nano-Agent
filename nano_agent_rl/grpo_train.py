@@ -386,6 +386,7 @@ def main():
         trust_remote_code=True,
     )
     model.config.use_cache = False
+    model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
 
     # ── 4. LoRA（RL 阶段用更小的 rank，更稳定） ───────────────
     peft_config = LoraConfig(
@@ -418,6 +419,7 @@ def main():
         # 稳定性
         bf16=GRPO_CONFIG["bf16"],
         gradient_checkpointing=GRPO_CONFIG["gradient_checkpointing"],
+        gradient_checkpointing_kwargs={"use_reentrant": False},
         max_grad_norm=GRPO_CONFIG["max_grad_norm"],
 
         # 日志 & 保存
