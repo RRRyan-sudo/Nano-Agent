@@ -47,7 +47,7 @@ SFT_CONFIG = dict(
     # 日志 & 保存
     logging_steps         = 10,
     save_strategy         = "steps",
-    save_steps            = 500,
+    save_steps            = 400,
     save_total_limit      = 2,
 
     # LoRA
