@@ -1,0 +1,11 @@
+# Agent RL 后训练依赖
+# 与 simple_posttrain 共享核心依赖
+
+torch>=2.4.0
+transformers>=4.45.0
+datasets>=3.0.0
+trl>=0.15.0
+peft>=0.13.0
+wandb>=0.18.0
+accelerate>=1.0.0
+bitsandbytes>=0.44.0
