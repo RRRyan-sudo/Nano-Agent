@@ -1,0 +1,50 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────
+.env
+.venv
+env/
+venv/
+
+# ── Training outputs (model weights, checkpoints) ────────────
+outputs/
+*/outputs/
+results/
+*/results/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# ── WandB ─────────────────────────────────────────────────────
+wandb/
+*/wandb/
+
+# ── Editor & IDE ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Claude Code local settings ────────────────────────────────
+.claude/settings.local.json
+**/.claude/settings.local.json
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs & temp ───────────────────────────────────────────────
+*.log
+*.jsonl
+tmp/
+temp/
